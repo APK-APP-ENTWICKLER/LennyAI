@@ -23,13 +23,13 @@ jobs:
       - name: Android SDK einrichten
         uses: android-actions/setup-android@v3
 
-      - name: Gradle einrichten
+      - name: Gradle installieren
         uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: "8.9"
 
       - name: APK bauen
-        run: gradle assembleDebug --stacktrace
+        run: |
+          gradle wrapper --gradle-version 8.9
+          ./gradlew assembleDebug
 
       - name: APK hochladen
         uses: actions/upload-artifact@v4
